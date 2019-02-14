@@ -10,7 +10,21 @@ class MaxSubarray {
         int center = (start + end) / 2;
         int maxLeft = maxLength(nums, start, center);
         int maxRight = maxLength(nums, center + 1, end);
-        return Math.max(maxLeft, maxRight);
+        
+        int maxMiddle = nums[center];
+        int sum = maxMiddle;
+        for(int i = center - 1; i >= start;i--){
+        	sum += nums[i];
+        	maxMiddle = Math.max(sum, maxMiddle);
+        }
+        
+        sum = maxMiddle;
+        for(int j = center + 1; j <= end; j++){
+        	sum += nums[j];
+        	maxMiddle = Math.max(sum, maxMiddle);
+        }
+        
+        return Math.max(maxMiddle, Math.max(maxLeft, maxRight));
     }
 
     public int maxSubArray(int[] nums) {
@@ -20,7 +34,8 @@ class MaxSubarray {
 
     public static void main(String[] args){
         MaxSubarray max = new MaxSubarray();
-        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int[] nums = {9, -1 ,-1};
+//        int[] nums = {1,2,3,-1,-2,-3};
         
         System.out.println(max.maxSubArray(nums));
     }
