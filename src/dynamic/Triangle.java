@@ -2,9 +2,8 @@ package dynamic;
 
 import java.util.List;
 
+// 120
 public class Triangle {
-	
-	
 	public int minimumTotal1(List<List<Integer>> triangle) {
 		int rowNum = triangle.size();
 		if(rowNum == 0)	return 0;
