@@ -4,11 +4,15 @@ package dynamic;
 class MaxSubarray2 {
     public int maxSubArray(int[] nums) {
         int maxSum = nums[0];
-        int maxVal = nums[0];
+        int maxValEndingWithI = nums[0];
         
         for(int i = 1; i < nums.length ;i++){
-        	maxVal = Math.max(nums[i], maxVal + nums[i]);
-        	maxSum = Math.max(maxSum, maxVal);
+        	// Calculate temporary max sum ending with a[i]. 
+        	// This sub-array either starts from i (restart), or starts from nowhere but needs to adding a[i]
+        	maxValEndingWithI = Math.max(nums[i], maxValEndingWithI + nums[i]);
+        	
+        	// Compare the max between adding a[i] or not.
+        	maxSum = Math.max(maxSum, maxValEndingWithI);
         }
         return maxSum;
     }
